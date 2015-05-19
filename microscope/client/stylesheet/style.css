@@ -118,6 +118,7 @@ body {
 
 .jumbotron{
   text-align: center;
+  color: red;
 }
 .jumbotron h2{
   font-size: 60px;

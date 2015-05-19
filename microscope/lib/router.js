@@ -4,7 +4,7 @@ Router.configure({
 	notFoundTemplate: 'notFound',
 	waitOn: function() {
 		return Meteor.subscribe('posts');}
-});
+	});
 
 Router.route('/', {name: 'postsList'});
 Router.route('/posts/:_id', {
@@ -18,6 +18,12 @@ var requireLogin = function(){
 	if (! Meteor.user()) {
 		this.render('accessDenied');
 	} else {
+		if (Meteor.loggingIn()) {
+			this.render(this.loadingTemplate);
+		} else {	
+			this.render('accessDenied');
+		}
+
 		this.next();
 	}
 }
